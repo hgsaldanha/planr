@@ -1,0 +1,20 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	template="/WEB-INF/template/main.xhtml">
+	<ui:define name="pageTitle">Novo Cartão</ui:define>
+	<ui:define name="body">
+		<p:growl id="error" autoUpdate="true" severity="error" />
+		<h1>Novo Cartão</h1>
+		<h:panelGrid columns="2">
+			<p:outputLabel value="Nome do cartão:" for="name" />
+			<p:inputText id="name" value="#{cardBean.card.name}" />
+			<p:outputLabel value="Data de vencimento:" for="expiration" />
+			<p:spinner id="expiration" min="1" max="30" value="#{cardBean.card.expiration}"  />
+			<p:commandButton ajax="false" value="Salvar" action="#{cardBean.save}" icon="ui-icon-disk" />
+			<p:link value="Cancelar" href="/card" />
+		</h:panelGrid>
+	</ui:define>
+</ui:composition>

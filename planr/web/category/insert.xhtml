@@ -1,0 +1,23 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	template="/WEB-INF/template/main.xhtml">
+	<ui:define name="pageTitle">Nova Categoria</ui:define>
+	<ui:define name="body">
+		<p:growl id="error" autoUpdate="true" severity="error" life="10000" />
+		<h1>Nova Categoria</h1>
+		<p>
+			<p:outputLabel for="name">Nome:</p:outputLabel> <p:inputText id="name" value="#{categoryBean.category.name}" />
+		</p>
+		<p>
+			<p:outputLabel value="Previsão mensal:" for="prevision" />
+			<p:inputText id="prevision" value="#{categoryBean.category.prevision}"  />
+		</p>
+		<p>
+			<p:commandButton ajax="false" value="Salvar" action="#{categoryBean.save}" icon="ui-icon-disk" /> ou 
+			<p:link value="Cancelar" href="/category" />
+		</p>
+	</ui:define>
+</ui:composition>

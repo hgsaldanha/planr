@@ -1,0 +1,26 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	template="/WEB-INF/template/main.xhtml">
+	<ui:define name="pageTitle">Categorias</ui:define>
+	<ui:define name="body">
+		<h1>Categorias</h1>
+		<p:link value="Nova Categoria" href="insert.xhtml" />
+		<p:dataTable value="#{categoryBean.all}" var="category" rows="10" paginator="true"  paginatorAlwaysVisible="false" emptyMessage="Não há categorias cadastradas">
+			<p:column headerText="Nome">
+				<p:link value="#{category.name}" outcome="select.xhtml" includeViewParams="true">
+					<f:param name="id" value="#{category.id}" />
+				</p:link>
+			</p:column>
+			<p:column headerText="Previsão mensal">
+				#{category.prevision}
+			</p:column>
+			<p:column headerText="Situação">
+				#{category.active == true?"Ativa":"Inativa"}
+			</p:column>
+		</p:dataTable>
+		<p:link value="Nova Categoria" href="insert.xhtml" />
+	</ui:define>
+</ui:composition>

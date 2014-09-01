@@ -1,0 +1,26 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	template="/WEB-INF/template/main.xhtml">
+	<ui:define name="pageTitle">Cartões</ui:define>
+	<ui:define name="body">
+		<h1>Cartões</h1>
+		<p:link value="Novo Cartão" href="insert.xhtml" />
+		<p:dataTable value="#{cardBean.all}" var="card" rows="10" paginator="true"  paginatorAlwaysVisible="false" emptyMessage="Não há cartões cadastrados">
+			<p:column headerText="Nome">
+				<p:link value="#{card.name}" outcome="select.xhtml" includeViewParams="true">
+					<f:param name="id" value="#{card.id}" />
+				</p:link>
+			</p:column>
+			<p:column headerText="Vencimento">
+				#{card.expiration}
+			</p:column>
+			<p:column headerText="Situação">
+				#{card.active == true?"Ativo":"Inativo"}
+			</p:column>
+		</p:dataTable>
+		<p:link value="Novo Cartão" href="insert.xhtml" />
+	</ui:define>
+</ui:composition>

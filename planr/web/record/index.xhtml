@@ -1,0 +1,29 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	template="/WEB-INF/template/main.xhtml">
+	<ui:define name="pageTitle">Compras</ui:define>
+	<ui:define name="body">
+		<h1>Compras</h1>
+		<p:link value="Nova Compra" href="insert.xhtml" />
+		<p:dataTable value="#{recordBean.all}" var="record" rows="10" paginator="true"  paginatorAlwaysVisible="false" emptyMessage="Não há compras cadastradas">
+			<p:column headerText="Descrição">
+				<p:link value="#{record.description}" outcome="select.xhtml" includeViewParams="true">
+					<f:param name="id" value="#{record.record.id == null ? record.id : record.record.id}" />
+				</p:link>
+				<h:outputText value=" (#{record.parcelIndex}/#{record.parcelTotal})" rendered="#{record.parcelTotal > 1}" /><br/>
+				<h:outputText value="#{record.category.name}" styleClass="pequeno" />
+			</p:column>
+			<p:column headerText="Valor">
+				#{record.value}
+			</p:column>
+			<p:column headerText="Data da compra">
+				<h:outputText value="#{record.formattedDate}" />
+			</p:column>
+		</p:dataTable>
+		<p:link value="Nova Compra" href="insert.xhtml" />
+	</ui:define>
+</ui:composition>
